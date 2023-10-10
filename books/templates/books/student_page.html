@@ -1,0 +1,61 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="holder">
+        {% include 'books/teacher_bar.html' %}
+
+        <h1>Оценки ученика {{ student.cgroup }} класса: {{ student }}</h1>
+        <code>
+            <h1 align="center">Октябрь</h1>
+            <table class="ranks">
+                <tr>
+                    <td></td>
+                    <td>01</td>
+                    <td>02</td>
+                    <td>03</td>
+                    <td>04</td>
+                    <td>05</td>
+                    <td>06</td>
+                    <td>07</td>
+                    <td>08</td>
+                    <td>09</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Русский Язык</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>5</td>
+                    <td></td>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for student in list %}
+                    <tr>
+                        <td>{{ student.0 }}</td>
+                        <td><a href="{% url 'student_page' student.1.id %}">{{ student.1.last_name }}</a></td>
+                        <td>{{ student.1.first_name }}</td>
+                        <td>{{ student.1.birth_date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </code>
+        <p></p>
+    </div>
+{% endblock %}

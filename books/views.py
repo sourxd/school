@@ -31,7 +31,7 @@ def book(request):
 
 
 def teach_room(request):
-    if not User.objects.filter(username=str(request.user).split('/ ')[-1], is_teacher=True):
+    if not User.objects.filter(username=request.user.username, is_teacher=True):
         return HttpResponseRedirect(reverse('index'))
     context = {
         'title': 'Школа №999 - Учительская',
@@ -47,8 +47,19 @@ def list_student(request):
         if form.is_valid():
             stud_list = [(i, stud) for i, stud in enumerate(Students.objects.filter(cgroup_id=clas).order_by('last_name', 'first_name'), start=1)]
     context = {
-        'title': 'Школа №999 - Учительская',
+        'title': 'Школа №999 - Список учеников',
         'form': form,
         'list': stud_list,
     }
     return render(request, 'books/list_student.html', context)
+
+def student_page(request, students_id):
+    try:
+        student = Students.objects.get(id=students_id)
+    except:
+        return HttpResponseRedirect(reverse('list_student'))
+    context = {
+        'title': 'Школа №999 - Информация об ученике',
+        'student': student,
+    }
+    return render(request, 'books/student_page.html', context)

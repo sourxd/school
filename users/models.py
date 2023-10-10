@@ -5,10 +5,10 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_teacher = models.BooleanField(('Статус учителя'), default=False,
                                      help_text='Устанавливает данного пользователя учителем')
-    subject = models.ForeignKey('Subjects', on_delete=models.DO_NOTHING, default=None, null=True)
+    subject = models.ManyToManyField('Subjects', default=None, verbose_name='Ведет предметы')
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name} / {self.subject} / {self.username}'
+        return f'{self.last_name} {self.first_name}'
 
     class Meta:
         verbose_name = 'Преподаватель'
@@ -18,6 +18,7 @@ class User(AbstractUser):
 class Cgroup(models.Model):
     clas = models.IntegerField(help_text='Название класса')
     group = models.CharField(max_length=255, help_text='Буква класса (А-Я) на русском языке')
+    ceo = models.ForeignKey(verbose_name='Классный руководитель', to=User, on_delete=models.DO_NOTHING, default=None, null=True)
 
     def __str__(self):
         return f'{self.clas}{self.group}'
@@ -45,7 +46,7 @@ class Students(models.Model):
     cgroup = models.ForeignKey('Cgroup', on_delete=models.DO_NOTHING, default=None)
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name} --- {self.cgroup}'
+        return f'{self.last_name} {self.first_name}'
 
     class Meta:
         verbose_name = 'Ученик'
