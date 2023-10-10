@@ -2,7 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from users.models import User
+from users.models import User, Students
+from users.forms import ChClassForm
+import locale
+locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 
 def index(request):
@@ -27,12 +30,25 @@ def book(request):
     return render(request, 'books/book.html', context)
 
 
-@login_required
 def teach_room(request):
-    print(request.user.groups)
-    if not request.user.last_name:
+    if not User.objects.filter(username=str(request.user).split('/ ')[-1], is_teacher=True):
         return HttpResponseRedirect(reverse('index'))
     context = {
         'title': 'Школа №999 - Учительская',
     }
-    return render(request, 'users/registration.html', context)
+    return render(request, 'books/teach_room.html', context)
+
+def list_student(request):
+    stud_list = None
+    form = ChClassForm()
+    if request.method == 'POST':
+        form = ChClassForm(data=request.POST)
+        clas = request.POST['clas']
+        if form.is_valid():
+            stud_list = [(i, stud) for i, stud in enumerate(Students.objects.filter(cgroup_id=clas).order_by('last_name', 'first_name'), start=1)]
+    context = {
+        'title': 'Школа №999 - Учительская',
+        'form': form,
+        'list': stud_list,
+    }
+    return render(request, 'books/list_student.html', context)

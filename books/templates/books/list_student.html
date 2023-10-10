@@ -1,0 +1,38 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="holder">
+        {% include 'books/teacher_bar.html' %}
+
+        <h1>Список учеников</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Показать">
+        </form>
+        <code>
+            {% if list %}
+                <h1>{{ list.0.1.cgroup }}</h1>
+                <table width="100%">
+                    <tr>
+                        <th>№</th>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Дата рождения</th>
+                    </tr>
+                    {% for student in list %}
+                        <tr>
+                            <td>{{ student.0 }}</td>
+                            <td>{{ student.1.last_name }}</td>
+                            <td>{{ student.1.first_name }}</td>
+                            <td>{{ student.1.birth_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </code>
+        <p></p>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from books.views import index, schedule, book, teach_room
+from books.views import index, schedule, book, teach_room, list_student
 from users.views import login, registration, logout
 
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('schedule/', schedule, name='schedule'),
     path('book/', book, name='book'),
     path('teach_room/', teach_room, name='teach_room'),
+    path('teach_room/list_student/', list_student, name='list_student'),
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('registration/', registration, name='registration'),
