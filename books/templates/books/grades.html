@@ -1,0 +1,80 @@
+{% extends 'books/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="holder">
+        {% include 'books/teacher_bar.html' %}
+
+        <h1>Выставление оценок</h1>
+
+        <form action="{% url 'grades' class_id %}" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.date.label }}</td>
+                    <td>{{ form.date }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.student.label }}</td>
+                    <td>{{ form.student }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.subject.label }}</td>
+                    <td>{{ form.subject }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.rank.label }}</td>
+                    <td>{{ form.rank }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="create_mark" value="Поставить"/></td>
+                </tr>
+                {% if messages %}
+                    <form action="{% url 'grades' class_id %}" method="post">
+                        {% csrf_token %}
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" name="remove_mark" value="Удалить"/></td>
+                        </tr>
+                    </form>
+                {% endif %}
+            </table>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:#127a00">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </form>
+
+        <h1>Последние поставленные оценки</h1>
+        <code>
+            {% if last_marks %}
+                <table class="ranks">
+                    <tr>
+                        <th>Когда выставлена</th>
+                        <th>Дата</th>
+                        <th>Фамилия Имя</th>
+                        <th>Класс</th>
+                        <th>Предмет</th>
+                        <th>Оценка</th>
+                    </tr>
+                    {% for item in last_marks %}
+                        <tr>
+                            <td>{{ item.created_at }}</td>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.student }}</td>
+                            <td>{{ item.student.cgroup }}</td>
+                            <td>{{ item.subject }}</td>
+                            <td>{{ item.rank }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Оценок нет</p>
+            {% endif %}
+        </code>
+    <p></p>
+    </div>
+{% endblock %}

@@ -11,7 +11,7 @@
     padding: 0
 }
 
-tml, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, table, tr, th, td, textarea, form, select {
+tml, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, table, tr, th, td, textarea, form {
     margin: 0;
     padding: 0;
     border: 0;
@@ -20,6 +20,17 @@ tml, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre
     font-size: 100%;
     font-family: inherit;
     vertical-align: baseline
+}
+
+select {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
 }
 
 input[type=text] {
@@ -83,7 +94,7 @@ table, td, th {
 }
 
 table.ranks{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
-table.ranks th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+table.ranks th{text-align:center;font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
 table.ranks td{text-align:center;font-size:13px;color:#354251;}
 table.ranks td,table.ranks th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #ccc;}
 table.ranks tr:hover{background-color:#f9fafb}

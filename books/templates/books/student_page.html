@@ -5,53 +5,109 @@
 
     <div class="holder">
         {% include 'books/teacher_bar.html' %}
+        <h1>Оценки ученика {{ cls_num }}{{ cls_lit }} класса: {{ student }}</h1>
+        <br>
+        <div align="center">
+            |{% for value, name in list_month.items %}
+            <a href="{% url 'student_page' class_id student.id value %}">{{ name }}</a> |
+        {% endfor %}
+        </div>
 
-        <h1>Оценки ученика {{ student.cgroup }} класса: {{ student }}</h1>
         <code>
-            <h1 align="center">Октябрь</h1>
+            <h1 align="center">{{ select_month }}</h1>
             <table class="ranks">
                 <tr>
-                    <td></td>
-                    <td>01</td>
-                    <td>02</td>
-                    <td>03</td>
-                    <td>04</td>
-                    <td>05</td>
-                    <td>06</td>
-                    <td>07</td>
-                    <td>08</td>
-                    <td>09</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                    <td>13</td>
-                    <td>14</td>
-                    <td>15</td>
+                    <th></th>
+                    <th>01</th>
+                    <th>02</th>
+                    <th>03</th>
+                    <th>04</th>
+                    <th>05</th>
+                    <th>06</th>
+                    <th>07</th>
+                    <th>08</th>
+                    <th>09</th>
+                    <th>10</th>
                 </tr>
-                <tr>
-                    <td>Русский Язык</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>5</td>
-                    <td></td>
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                {% for student in list %}
+                {% for i, v in main_dict.items %}
                     <tr>
-                        <td>{{ student.0 }}</td>
-                        <td><a href="{% url 'student_page' student.1.id %}">{{ student.1.last_name }}</a></td>
-                        <td>{{ student.1.first_name }}</td>
-                        <td>{{ student.1.birth_date }}</td>
+                        <td>{{ i }}</td>
+                        <td>{{ v.0 }}</td>
+                        <td>{{ v.1 }}</td>
+                        <td>{{ v.2 }}</td>
+                        <td>{{ v.3 }}</td>
+                        <td>{{ v.4 }}</td>
+                        <td>{{ v.5 }}</td>
+                        <td>{{ v.6 }}</td>
+                        <td>{{ v.7 }}</td>
+                        <td>{{ v.8 }}</td>
+                        <td>{{ v.9 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <table class="ranks">
+                <tr>
+                    <th></th>
+                    <th>11</th>
+                    <th>12</th>
+                    <th>13</th>
+                    <th>14</th>
+                    <th>15</th>
+                    <th>16</th>
+                    <th>17</th>
+                    <th>18</th>
+                    <th>19</th>
+                    <th>20</th>
+                </tr>
+                {% for i, v in main_dict.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        <td>{{ v.10 }}</td>
+                        <td>{{ v.11 }}</td>
+                        <td>{{ v.12 }}</td>
+                        <td>{{ v.13 }}</td>
+                        <td>{{ v.14 }}</td>
+                        <td>{{ v.15 }}</td>
+                        <td>{{ v.16 }}</td>
+                        <td>{{ v.17 }}</td>
+                        <td>{{ v.18 }}</td>
+                        <td>{{ v.19 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <table class="ranks">
+                <tr>
+                    <th></th>
+                    <th>21</th>
+                    <th>22</th>
+                    <th>23</th>
+                    <th>24</th>
+                    <th>25</th>
+                    <th>26</th>
+                    <th>27</th>
+                    <th>28</th>
+                    <th>29</th>
+                    <th>30</th>
+                    {% if long_month %}
+                        <th>31</th>
+                    {% endif %}
+                </tr>
+                {% for i, v in main_dict.items %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        <td>{{ v.20 }}</td>
+                        <td>{{ v.21 }}</td>
+                        <td>{{ v.22 }}</td>
+                        <td>{{ v.23 }}</td>
+                        <td>{{ v.24 }}</td>
+                        <td>{{ v.25 }}</td>
+                        <td>{{ v.26 }}</td>
+                        <td>{{ v.27 }}</td>
+                        <td>{{ v.28 }}</td>
+                        <td>{{ v.29 }}</td>
+                        {% if long_month %}
+                            <td>{{ v.30 }}</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

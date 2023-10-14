@@ -7,15 +7,11 @@
         {% include 'books/teacher_bar.html' %}
 
         <h1>Список учеников</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Показать">
-        </form>
+
         <code>
             {% if list %}
                 <h1>{{ list.0.1.cgroup }} - Классный руководитель: {{ list.0.1.cgroup.ceo }}</h1>
-                <table width="100%">
+                <table class="ranks">
                     <tr>
                         <th>№</th>
                         <th>Фамилия</th>
@@ -25,7 +21,7 @@
                     {% for student in list %}
                             <tr>
                                 <td>{{ student.0 }}</td>
-                                <td><a href="{% url 'student_page' student.1.id %}">{{ student.1.last_name }}</a></td>
+                                <td><a href="{% url 'student_page' class_id student.1.id month_id %}">{{ student.1.last_name }}</a></td>
                                 <td>{{ student.1.first_name }}</td>
                                 <td>{{ student.1.birth_date }}</td>
                             </tr>
