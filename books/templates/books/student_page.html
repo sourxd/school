@@ -5,7 +5,7 @@
 
     <div class="holder">
         {% include 'books/teacher_bar.html' %}
-        <h1>Оценки ученика {{ cls_num }}{{ cls_lit }} класса: {{ student }}</h1>
+        <h1>Оценки ученика {{ student.cgroup.clas }}{{ student.cgroup.group }} класса: {{ student }}</h1>
         <br>
         <div align="center">
             |{% for value, name in list_month.items %}

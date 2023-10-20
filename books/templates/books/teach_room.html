@@ -3,15 +3,23 @@
 
 {% block content %}
 
-    <div class="holder">
+    <div class="holder" xmlns="http://www.w3.org/1999/html">
 
         <h1>Выберите класс</h1>
-        <br>
-            <ul>
+        <code>
+            <table class="ranks">
+                <tr>
+                    <th>Класс</th>
+                    <th>Классный руководитель</th>
+                </tr>
                 {% for class in class_list %}
-                    <li><a href="{% url 'list_student' class.2 %}">{{ class.0 }}{{ class.1 }}</a></li>
+                    <tr>
+                        <td><a href="{% url 'list_student' class.2 %}">{{ class.0 }}{{ class.1 }}</a></td>
+                        <td>{{ class.3 }}</td>
+                    </tr>
                 {% endfor %}
-            </ul>
+            </table>
+        </code>
 
         <p></p>
     </div>

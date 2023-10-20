@@ -29,14 +29,14 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" name="create_mark" value="Поставить"/></td>
+                    <td><input type="submit" name="create" value="Поставить"/></td>
                 </tr>
                 {% if messages %}
                     <form action="{% url 'grades' class_id %}" method="post">
                         {% csrf_token %}
                         <tr>
                             <td></td>
-                            <td><input type="submit" name="remove_mark" value="Удалить"/></td>
+                            <td><input type="submit" name="remove" value="Удалить"/></td>
                         </tr>
                     </form>
                 {% endif %}
@@ -48,7 +48,7 @@
             {% endif %}
         </form>
 
-        <h1>Последние поставленные оценки</h1>
+        <h1>Последние поставленные Вами оценки</h1>
         <code>
             {% if last_marks %}
                 <table class="ranks">
@@ -62,8 +62,8 @@
                     </tr>
                     {% for item in last_marks %}
                         <tr>
-                            <td>{{ item.created_at }}</td>
-                            <td>{{ item.date }}</td>
+                            <td>{{ item.created_at | date:"j.m.y" }}</td>
+                            <td>{{ item.date | date:"j.m.y" }}</td>
                             <td>{{ item.student }}</td>
                             <td>{{ item.student.cgroup }}</td>
                             <td>{{ item.subject }}</td>

@@ -2,12 +2,14 @@ from django.contrib import auth, messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-
-from users.models import User
 from users.forms import UserLoginForm, UserRegistrationForm
+import locale
+
+locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
 
 
 def login(request):
+    """ Страница входа """
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -29,6 +31,7 @@ def login(request):
 
 
 def registration(request):
+    """ Страница регистрации пользователя """
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
@@ -47,6 +50,6 @@ def registration(request):
 
 
 def logout(request):
+    """ Выход из аккаунта """
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
-

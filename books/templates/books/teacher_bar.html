@@ -1,7 +1,12 @@
 <table>
     <tr>
         <td><a href="{% url 'list_student' class_id %}">Список учеников</a></td>
-        <td><a href="{% url 'grades' class_id %}">Выставить оценки</a></td>
-        <td><a href="#">Журналы</a></td>
+        {% if user.is_teacher %}
+            <td><a href="{% url 'grades' class_id %}">Выставить оценки</a></td>
+        {% endif %}
+        {% if user.is_editor %}
+            <td><a href="{% url 'editor' class_id %}">Редактор расписания</a></td>
+            <td><a href="{% url 'add_student' class_id %}">Добавить ученика</a></td>
+        {% endif %}
     </tr>
 </table>

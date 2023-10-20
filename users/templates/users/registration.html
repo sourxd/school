@@ -9,12 +9,16 @@
             {% csrf_token %}
             <table>
                 <tr>
+                    <td>Фамилия:</td>
+                    <td>{{ form.last_name }}</td>
+                </tr>
+                <tr>
                     <td>Имя:</td>
                     <td>{{ form.first_name }}</td>
                 </tr>
                 <tr>
-                    <td>Фамилия:</td>
-                    <td>{{ form.last_name }}</td>
+                    <td>Отчество:</td>
+                    <td>{{ form.patronymic }}</td>
                 </tr>
                 <tr>
                     <td>Логин:</td>
