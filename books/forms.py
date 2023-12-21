@@ -29,7 +29,7 @@ class ScheduleForm(forms.Form):
 
 
 class ChClassForm(forms.Form):
-    id = forms.ModelChoiceField(queryset=Cgroup.objects.all().order_by('clas'), label='Выберите класс',
+    id = forms.ModelChoiceField(queryset=Cgroup.objects.all().order_by('clas', 'group'), label='Выберите класс',
                                 widget=forms.Select(attrs={'onchange': 'submit();'}), required=False)
 
     class Meta:
