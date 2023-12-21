@@ -1,4 +1,5 @@
 Проект электронного дневника для образовательного учреждения
+Django+PostgreSQL
 
 ![1123](https://github.com/sourxd/school/assets/107273143/3a0e2c79-25c3-4339-91f4-0fb851fd2c18)
 ![2342](https://github.com/sourxd/school/assets/107273143/5d4bea20-a9df-48a5-adb6-38e5d3d4fcbb)
